@@ -28,10 +28,7 @@ class _SplashpageState extends State<Splashpage> {
             begin: Alignment.bottomCenter, end: Alignment.center),
         duration: Duration(seconds: 3),
         curve: Curves.bounceIn,
-        child: splashImage(
-          heigth: 200,
-          width: 200,
-        ),
+        child: splashImage(),
         builder: (BuildContext context, Alignment value, Widget? child) {
           return Container(
             height: double.infinity,

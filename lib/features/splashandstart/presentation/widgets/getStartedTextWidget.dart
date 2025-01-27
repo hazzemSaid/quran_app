@@ -33,7 +33,7 @@ class getStartedTextWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
         ),
         height: 50,
-        width: 300,
+        width: 250,
         child: Center(
           child: Text(
             title,

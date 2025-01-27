@@ -12,7 +12,7 @@ class getStartTabletlayout extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(width: double.infinity, height: 120),
+        SizedBox(width: double.infinity, height: 90),
         Padding(
           padding: const EdgeInsets.only(left: 12.0, top: 20),
           child: splashImage(),

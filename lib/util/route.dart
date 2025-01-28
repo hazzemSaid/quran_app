@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran_app/features/splashandstart/presentation/screens/SplashPage.dart';
 
+import '../features/splashandstart/presentation/layouts/mobile/mobilelogin.dart';
+import '../features/splashandstart/presentation/layouts/mobile/mobileregister.dart';
 import '../features/splashandstart/presentation/screens/getstart.dart';
 
 class MyRoute {
@@ -26,6 +29,13 @@ class MyRoute {
     GoRoute(
       path: getstart,
       builder: (context, state) => Getstart(),
-    )
+    ),
+    GoRoute(
+      path: register,
+      builder: (context, state) => MobileRegistration(),
+    ),
+    GoRoute(path: login, builder: (context, state) => MobileLoginView()),
   ]);
+
+  //using if condition to naviagtion
 }

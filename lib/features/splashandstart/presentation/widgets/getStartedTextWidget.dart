@@ -14,31 +14,29 @@ class getStartedTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
-          gradient: LinearGradient(
-            colors: colors,
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
           ),
-          borderRadius: BorderRadius.circular(40),
+        ],
+        gradient: LinearGradient(
+          colors: colors,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
-        height: 50,
-        width: 250,
-        child: Center(
-          child: Text(
-            title,
-            style: Appconstrains.tajawal_medium.copyWith(color: textColor),
-          ),
+        borderRadius: BorderRadius.circular(40),
+      ),
+      height: 50,
+      width: 250,
+      child: Center(
+        child: Text(
+          title,
+          style: Appconstrains.tajawal_medium.copyWith(color: textColor),
         ),
       ),
     );

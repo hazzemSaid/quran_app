@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../util/Appconstrains.dart';
+import '../../../../../util/route.dart';
 import '../../widgets/getStartedTextWidget.dart';
 import '../../widgets/splash_image.dart';
 
@@ -25,23 +27,33 @@ class getstartmobileViewLayout extends StatelessWidget {
           style: Appconstrains.tajawal_bold.copyWith(color: Colors.black38),
         ),
         SizedBox(width: double.infinity, height: 70),
-        getStartedTextWidget(
-          title: 'تسجيل دخول',
-          colors: [
-            Appconstrains.primaryColor,
-            Appconstrains.primaryColor,
-            const Color.fromARGB(255, 14, 223, 195),
-          ],
-          textColor: Appconstrains.secondaryColor,
+        GestureDetector(
+          onTap: () {
+            context.go(MyRoute.login);
+          },
+          child: getStartedTextWidget(
+            title: 'تسجيل دخول',
+            colors: [
+              Appconstrains.primaryColor,
+              Appconstrains.primaryColor,
+              const Color.fromARGB(255, 14, 223, 195),
+            ],
+            textColor: Appconstrains.secondaryColor,
+          ),
         ),
         SizedBox(width: double.infinity, height: 33),
-        getStartedTextWidget(
-          title: 'انشاء حساب',
-          colors: [
-            Appconstrains.secondaryColor,
-            Appconstrains.secondaryColor,
-          ],
-          textColor: Appconstrains.primaryColor,
+        GestureDetector(
+          onTap: () {
+            context.go(MyRoute.register);
+          },
+          child: getStartedTextWidget(
+            title: 'انشاء حساب',
+            colors: [
+              Appconstrains.secondaryColor,
+              Appconstrains.secondaryColor,
+            ],
+            textColor: Appconstrains.primaryColor,
+          ),
         )
       ],
     );

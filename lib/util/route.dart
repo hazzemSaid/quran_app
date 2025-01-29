@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran_app/features/splashandstart/presentation/screens/SplashPage.dart';
 
-import '../features/splashandstart/presentation/layouts/mobile/mobilelogin.dart';
-import '../features/splashandstart/presentation/layouts/mobile/mobileregister.dart';
+import '../features/splashandstart/presentation/layouts/mobile/screens/mobilelogin.dart';
+import '../features/splashandstart/presentation/layouts/mobile/screens/mobileregister.dart';
 import '../features/splashandstart/presentation/screens/getstart.dart';
 
 class MyRoute {

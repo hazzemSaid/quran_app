@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../layouts/desktop/getStartedDesktopLayout.dart';
-import '../layouts/mobile/mobilegetstartlayout.dart';
+import '../layouts/mobile/screens/mobilegetstartlayout.dart';
 import '../layouts/tablet/getstarttable.dart';
 
 class Getstart extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
@@ -32,7 +33,7 @@ class MobileLoginView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(width: double.infinity, height: 90),
+                SizedBox(width: double.infinity, height: 40),
                 splashImage(),
                 Padding(
                   padding: const EdgeInsets.all(20),
@@ -62,6 +63,38 @@ class MobileLoginView extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 30,
+                ),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "تسجيل دخول بواسطة",
+                      style: Appconstrains.tajawal_medium.copyWith(
+                        color: Colors.black,
+                      ),
+                    )),
+                SizedBox(
+                  height: 20,
+                  width: double.infinity,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.google,
+                      color: Colors.red,
+                      size: 30,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 2,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                  width: double.infinity,
                 ),
                 Row_of_register()
               ],

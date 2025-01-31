@@ -99,7 +99,7 @@ class MobileRegistration extends StatelessWidget {
                   Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "تسجيل دخول بواسطة",
+                        "انشاء حساب بواسطة",
                         style: Appconstrains.tajawal_medium.copyWith(
                           color: Colors.black,
                         ),

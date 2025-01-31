@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:keyboard_avoider/keyboard_avoider.dart';
 
 import '../../../../../../util/Appconstrains.dart';
 import '../../../widgets/splash_image.dart';
@@ -26,7 +27,8 @@ class MobileLoginView extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: SingleChildScrollView(
+          child: KeyboardAvoider(
+            autoScroll: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -39,7 +41,9 @@ class MobileLoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: value_listenableBuilder_for_password(
-                      eyeicon: eyeicon, passwordKey: _passwordKey),
+                      Text: 'كلمة السر',
+                      eyeicon: eyeicon,
+                      passwordKey: _passwordKey),
                 ),
                 Padding(
                   padding:
@@ -47,7 +51,9 @@ class MobileLoginView extends StatelessWidget {
                   child: forget_password_align(),
                 ),
                 GestureDetector(
-                  child: login_container(),
+                  child: custom_button(
+                    text: 'تسجيل دخول',
+                  ),
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
                       print('Validated');
@@ -119,15 +125,14 @@ class Row_of_register extends StatelessWidget {
   }
 }
 
-class login_container extends StatelessWidget {
-  const login_container({
-    super.key,
-  });
+class custom_button extends StatelessWidget {
+  const custom_button({super.key, required this.text});
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.08,
       decoration: BoxDecoration(
         boxShadow: [
@@ -151,7 +156,7 @@ class login_container extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 22.0),
-        child: Text('تسجيل دخول',
+        child: Text(text,
             textAlign: TextAlign.center,
             style: Appconstrains.tajawal_medium.copyWith(
               color: const Color.fromARGB(255, 235, 235, 235),
@@ -164,19 +169,21 @@ class login_container extends StatelessWidget {
 class value_listenableBuilder_for_password extends StatelessWidget {
   const value_listenableBuilder_for_password({
     super.key,
+    required this.Text,
     required this.eyeicon,
     required TextEditingController passwordKey,
   }) : _passwordKey = passwordKey;
 
   final ValueNotifier<bool> eyeicon;
   final TextEditingController _passwordKey;
-
+  final String Text;
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: eyeicon,
       builder: (context, value, child) {
-        return password_text_field(passwordKey: _passwordKey, eyeicon: eyeicon);
+        return password_text_field(
+            Text: Text, passwordKey: _passwordKey, eyeicon: eyeicon);
       },
     );
   }
@@ -187,11 +194,12 @@ class password_text_field extends StatelessWidget {
     super.key,
     required TextEditingController passwordKey,
     required this.eyeicon,
+    required this.Text,
   }) : _passwordKey = passwordKey;
 
   final TextEditingController _passwordKey;
   final ValueNotifier<bool> eyeicon;
-
+  final String Text;
   bool get value => eyeicon.value;
 
   @override
@@ -210,14 +218,14 @@ class password_text_field extends StatelessWidget {
       decoration: InputDecoration(
         hintTextDirection: TextDirection.rtl,
         hintStyle: Appconstrains.cairo_bold.copyWith(
-          fontSize: 18,
+          fontSize: 15,
           color: Colors.black38,
         ),
-        hintText: ' كلمة السر',
+        hintText: Text,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40),
         ),
-        suffixIcon: IconButton(
+        prefixIcon: IconButton(
           onPressed: () {
             eyeicon.value = !value; // Toggle visibility
           },
@@ -253,7 +261,7 @@ class email_text_field extends StatelessWidget {
       decoration: InputDecoration(
         hintTextDirection: TextDirection.rtl,
         hintStyle: Appconstrains.cairo_bold.copyWith(
-          fontSize: 18,
+          fontSize: 15,
           color: Colors.black38,
         ),
         hintText: 'البريد الالكتروني',

@@ -80,7 +80,7 @@ class MobileRegistration extends StatelessWidget {
                     child: value_listenableBuilder_for_password(
                         Text: 'اعادة كلمة السر',
                         eyeicon: eyeicon,
-                        passwordKey: _passwordKey),
+                        passwordKey: _validpasswordKey),
                   ),
                   SizedBox(
                     height: 20,

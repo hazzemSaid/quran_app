@@ -10,7 +10,6 @@ import '../../../../../../../splashandstart/presentation/widgets/splash_image.da
 import '../widgets/custom_button.dart';
 import '../widgets/email_text_field.dart';
 import '../widgets/forget_password_align.dart';
-import '../widgets/password_text_field.dart';
 import '../widgets/value_listenableBuilder_for_password.dart';
 
 class MobileLoginView extends StatelessWidget {
@@ -18,6 +17,8 @@ class MobileLoginView extends StatelessWidget {
   final TextEditingController _emailKey = TextEditingController();
   final TextEditingController _passwordKey = TextEditingController();
   final ValueNotifier<bool> eyeicon = ValueNotifier<bool>(false);
+
+  MobileLoginView({super.key});
 
   @override
   Widget build(BuildContext context) {

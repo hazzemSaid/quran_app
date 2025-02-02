@@ -6,7 +6,6 @@ import '../../../../../../../../util/Appconstrains.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/email_text_field.dart';
 import '../widgets/value_listenableBuilder_for_password.dart';
-import 'mobilelogin.dart';
 
 class MobileRegistration extends StatelessWidget {
   MobileRegistration({super.key});

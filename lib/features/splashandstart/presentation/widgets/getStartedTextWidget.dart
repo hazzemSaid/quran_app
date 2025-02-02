@@ -15,6 +15,7 @@ class getStartedTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.07,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -31,7 +32,6 @@ class getStartedTextWidget extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(40),
       ),
-      height: 50,
       width: 250,
       child: Center(
         child: Text(

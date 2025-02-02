@@ -21,8 +21,10 @@ class MyRoute {
   static const String verifyEmail = '/verifyEmail';
   static const String verifyPhone = '/verifyPhone';
   static const String getstart = '/getstart';
+  static const String onbording = '/onbording';
 
   static final GoRouter router = GoRouter(routes: [
+    GoRoute(path: onbording, builder: (context, state) => Onbording()),
     GoRoute(
       path: '/',
       builder: (context, state) => Splashpage(),
@@ -40,4 +42,18 @@ class MyRoute {
   ]);
 
   //using if condition to naviagtion
+}
+
+class Onbording extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      body: Center(
+        child: Text(
+          "onbording",
+        ),
+      ),
+    );
+  }
 }

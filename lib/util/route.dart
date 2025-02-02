@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran_app/features/splashandstart/presentation/screens/SplashPage.dart';
 
-import '../features/splashandstart/presentation/layouts/mobile/screens/mobilelogin.dart';
-import '../features/splashandstart/presentation/layouts/mobile/screens/mobileregister.dart';
+import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobilelogin.dart';
+import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobileregister.dart';
+import '../features/home/presentation/screens/homepage.dart';
 import '../features/splashandstart/presentation/screens/getstart.dart';
 
 class MyRoute {
@@ -35,6 +36,7 @@ class MyRoute {
       builder: (context, state) => MobileRegistration(),
     ),
     GoRoute(path: login, builder: (context, state) => MobileLoginView()),
+    GoRoute(path: home, builder: (context, state) => Homescreen()),
   ]);
 
   //using if condition to naviagtion

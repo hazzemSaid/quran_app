@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../../util/responsive/responsivegetstart.dart';
 import '../layouts/desktop/getStartedDesktopLayout.dart';
-import '../layouts/mobile/screens/mobilegetstartlayout.dart';
-import '../layouts/tablet/getstarttable.dart';
+import '../layouts/mobile/mobilegetstartlayout.dart';
 
 class Getstart extends StatelessWidget {
   const Getstart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(builder: (context, constrains) {
-      print(constrains.maxWidth);
-      if (constrains.maxWidth < 600) {
-        return getstartmobileViewLayout();
-      } else if (constrains.maxWidth < 1200) {
-        return getStartTabletlayout();
-      } else {
-        return getStartedDesktopLayout();
-      }
-    }));
+    return Scaffold(
+        body: startScreenResponsiveBuilder(
+            getstartmobileViewLayout: (context) => getstartmobileViewLayout(),
+            getStartTabletlayout: (context) => getStartedDesktopLayout(),
+            getStartedDesktopLayout: (context) => getStartedDesktopLayout()));
   }
 }

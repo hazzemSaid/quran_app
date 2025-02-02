@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../util/Appconstrains.dart';
-import '../../../../../../util/route.dart';
-import '../../../widgets/getStartedTextWidget.dart';
-import '../../../widgets/splash_image.dart';
+import '../../../../../util/Appconstrains.dart';
+import '../../../../../util/route.dart';
+import '../../widgets/getStartedTextWidget.dart';
+import '../../widgets/splash_image.dart';
 
 class getstartmobileViewLayout extends StatelessWidget {
   const getstartmobileViewLayout({
@@ -54,7 +54,7 @@ class getstartmobileViewLayout extends StatelessWidget {
             ],
             textColor: Appconstrains.primaryColor,
           ),
-        )
+        ),
       ],
     );
   }

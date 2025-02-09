@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran_app/features/splashandstart/presentation/screens/SplashPage.dart';
 
 import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobilelogin.dart';
 import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobileregister.dart';
 import '../features/home/presentation/screens/homepage.dart';
+import '../features/onbording/presentation/screens/onbording.dart';
 import '../features/splashandstart/presentation/screens/getstart.dart';
 
 class MyRoute {
@@ -24,7 +24,7 @@ class MyRoute {
   static const String onbording = '/onbording';
 
   static final GoRouter router = GoRouter(routes: [
-    GoRoute(path: onbording, builder: (context, state) => Onbording()),
+    GoRoute(path: onbording, builder: (context, state) => FirstOnbording()),
     GoRoute(
       path: '/',
       builder: (context, state) => Splashpage(),
@@ -42,18 +42,4 @@ class MyRoute {
   ]);
 
   //using if condition to naviagtion
-}
-
-class Onbording extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      body: Center(
-        child: Text(
-          "onbording",
-        ),
-      ),
-    );
-  }
 }

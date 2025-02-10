@@ -4,7 +4,7 @@ import 'package:quran_app/features/splashandstart/presentation/screens/SplashPag
 import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobilelogin.dart';
 import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobileregister.dart';
 import '../features/home/presentation/screens/homepage.dart';
-import '../features/onbording/presentation/screens/onbording.dart';
+import '../features/onbording/presentation/screens/onbording1.dart';
 import '../features/splashandstart/presentation/screens/getstart.dart';
 
 class MyRoute {

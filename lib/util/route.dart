@@ -3,7 +3,7 @@ import 'package:quran_app/features/splashandstart/presentation/screens/SplashPag
 
 import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobilelogin.dart';
 import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobileregister.dart';
-import '../features/home/presentation/screens/homepage.dart';
+import '../features/home/presentation/screens/bottomNavigation.dart';
 import '../features/onbording/presentation/screens/onbording1.dart';
 import '../features/splashandstart/presentation/screens/getstart.dart';
 
@@ -38,7 +38,7 @@ class MyRoute {
       builder: (context, state) => MobileRegistration(),
     ),
     GoRoute(path: login, builder: (context, state) => MobileLoginView()),
-    GoRoute(path: home, builder: (context, state) => Homescreen()),
+    GoRoute(path: home, builder: (context, state) => bottomNavigation()),
   ]);
 
   //using if condition to naviagtion

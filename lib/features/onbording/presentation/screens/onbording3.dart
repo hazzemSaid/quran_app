@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../util/Appconstrains.dart';
 import '../../../../util/constants/assets.dart';
-import '../../../home/presentation/screens/homepage.dart';
+import '../../../home/presentation/screens/bottomNavigation.dart';
 
 class ThirdOnbording extends StatelessWidget {
   @override
@@ -59,7 +59,7 @@ class ThirdOnbording extends StatelessWidget {
                     //in future check if user is logged in before
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => Homescreen(),
+                        builder: (context) => bottomNavigation(),
                       ),
                     );
                   },

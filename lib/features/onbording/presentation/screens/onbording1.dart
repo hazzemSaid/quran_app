@@ -56,7 +56,7 @@ class FirstOnbording extends StatelessWidget {
               child: GestureDetector(
                   onTap: () {
                     //in future check if user is logged in before
-                    Navigator.of(context).pushReplacement(
+                    Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => SecondOnbording(),
                       ),

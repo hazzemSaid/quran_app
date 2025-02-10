@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       //change direction
       locale: const Locale('ar', 'SA'),
+      title: 'Quran App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

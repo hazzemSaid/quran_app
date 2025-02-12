@@ -29,81 +29,105 @@ class alzkarWidget extends StatelessWidget {
                 height: 20,
                 width: double.infinity,
               ),
-              azkar_widget(
-                factoroftitle: 2,
-                factorofwidth: 0.9,
-                colorList: [
-                  const Color.fromARGB(255, 253, 252, 251),
-                  const Color.fromARGB(255, 226, 209, 195),
-                ],
-                title: "اذكار الصباح",
-                image: MyAssets.sun,
+              Expanded(
+                child: azkar_widget(
+                  factoroftitle: 2,
+                  factorofwidth: 0.9,
+                  colorList: [
+                    const Color.fromARGB(255, 226, 209, 195),
+                    const Color.fromARGB(255, 226, 209, 195),
+                    const Color.fromARGB(255, 226, 209, 195),
+                  ],
+                  title: "اذكار الصباح",
+                  image: MyAssets.sun,
+                ),
               ),
-              azkar_widget(
-                factoroftitle: 2,
-                factorofwidth: 0.9,
-                colorList: [
-                  const Color.fromARGB(255, 167, 166, 203),
-                  const Color.fromARGB(255, 137, 137, 186),
-                ],
-                title: "اذكار المساء",
-                image: MyAssets.moon,
+              SizedBox(
+                height: 20,
+                width: double.infinity,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  azkar_widget(
-                    factoroftitle: 1,
-                    factorofwidth: 0.4,
-                    colorList: [
-                      //  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
-                      const Color.fromARGB(255, 40, 113, 155),
-                      const Color.fromARGB(255, 128, 208, 199),
-                    ],
-                    title: 'بعد الصلاة',
-                    image: MyAssets.shalat,
-                  ),
-                  azkar_widget(
-                    factorofwidth: 0.4,
-                    factoroftitle: 1,
-                    colorList: [
-                      const Color.fromARGB(255, 168, 237, 234),
-                      const Color.fromARGB(255, 254, 214, 227),
-                    ],
-                    title: 'قبل الصلاة',
-                    image: MyAssets.openhand,
-                  ),
-                ],
+              Expanded(
+                child: azkar_widget(
+                  factoroftitle: 2,
+                  factorofwidth: 0.9,
+                  colorList: [
+                    const Color.fromARGB(255, 167, 166, 203),
+                    const Color.fromARGB(255, 137, 137, 186),
+                  ],
+                  title: "اذكار المساء",
+                  image: MyAssets.moon,
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  azkar_widget(
-                    factoroftitle: 1,
-                    factorofwidth: 0.4,
-                    colorList: [
-                      // background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
-                      const Color.fromARGB(255, 240, 139, 112),
-                      const Color.fromARGB(255, 249, 212, 35),
-                      const Color.fromARGB(255, 249, 212, 35),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+                child: Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: azkar_widget(
+                          factoroftitle: 1,
+                          factorofwidth: 0.4,
+                          colorList: [
+                            //  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+                            const Color.fromARGB(255, 40, 113, 155),
+                            const Color.fromARGB(255, 128, 208, 199),
+                          ],
+                          title: 'بعد الصلاة',
+                          image: MyAssets.shalat,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: azkar_widget(
+                          factorofwidth: 0.4,
+                          factoroftitle: 1,
+                          colorList: [
+                            const Color.fromARGB(255, 168, 237, 234),
+                            const Color.fromARGB(255, 254, 214, 227),
+                          ],
+                          title: 'قبل الصلاة',
+                          image: MyAssets.openhand,
+                        ),
+                      ),
                     ],
-                    title: 'الاستيقاظ',
-                    image: MyAssets.weakup,
                   ),
-                  azkar_widget(
-                    factorofwidth: 0.4,
-                    factoroftitle: 1,
-                    colorList: [
-                      // background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-                      const Color.fromARGB(255, 9, 32, 63),
-                      const Color.fromARGB(255, 83, 120, 149),
-                      const Color.fromARGB(255, 83, 120, 149),
-                      const Color.fromARGB(255, 83, 120, 149),
-                    ],
-                    title: 'النوم',
-                    image: MyAssets.sleep,
-                  ),
-                ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    azkar_widget(
+                      factoroftitle: 1,
+                      factorofwidth: 0.4,
+                      colorList: [
+                        // background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+                        const Color.fromARGB(255, 240, 139, 112),
+                        const Color.fromARGB(255, 249, 212, 35),
+                        const Color.fromARGB(255, 249, 212, 35),
+                      ],
+                      title: 'الاستيقاظ',
+                      image: MyAssets.weakup,
+                    ),
+                    azkar_widget(
+                      factorofwidth: 0.4,
+                      factoroftitle: 1,
+                      colorList: [
+                        // background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+                        const Color.fromARGB(255, 9, 32, 63),
+                        const Color.fromARGB(255, 83, 120, 149),
+                        const Color.fromARGB(255, 83, 120, 149),
+                        const Color.fromARGB(255, 83, 120, 149),
+                      ],
+                      title: 'النوم',
+                      image: MyAssets.sleep,
+                    ),
+                  ],
+                ),
               )
             ],
           ),

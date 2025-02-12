@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../util/Appconstrains.dart';
 
-class alzkar extends StatelessWidget {
-  const alzkar({super.key});
+class alzkarWidget extends StatelessWidget {
+  const alzkarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

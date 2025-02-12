@@ -18,11 +18,11 @@ class bottomNavigation extends StatefulWidget {
 class _bottomNavigationState extends State<bottomNavigation> {
   int selectedIndex = 0;
   final List<Widget> _screens = [
-    homescreen(),
-    alzkar(),
-    listenquran(),
-    praying(),
-    profile()
+    mainHomeScreen(),
+    alzkarWidget(),
+    quranAudioListener(),
+    prayerScreen(),
+    userProfile()
   ];
   @override
   Widget build(BuildContext context) {

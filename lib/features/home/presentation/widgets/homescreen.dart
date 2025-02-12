@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../util/Appconstrains.dart';
 
-class homescreen extends StatelessWidget {
-  const homescreen({
+class mainHomeScreen extends StatelessWidget {
+  const mainHomeScreen({
     super.key,
   });
 
@@ -28,6 +28,27 @@ class homescreen extends StatelessWidget {
           color: Colors.black12,
           thickness: 1.4,
         ),
+        SizedBox(
+          height: 26,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text('data'), Text("الختمة الحالية")],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text('28:الورد القادم'), Text('data')],
+              )
+            ],
+          ),
+        )
       ],
     );
   }
@@ -111,7 +132,7 @@ class quran_content extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 21),
       width: MediaQuery.sizeOf(context).width * 0.9,
-      height: MediaQuery.sizeOf(context).height * 0.3,
+      height: MediaQuery.sizeOf(context).height * 0.4,
       decoration: BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.circular(20),

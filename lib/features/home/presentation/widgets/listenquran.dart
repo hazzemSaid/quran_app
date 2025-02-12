@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class listenquran extends StatelessWidget {
-  const listenquran({super.key});
+class quranAudioListener extends StatelessWidget {
+  const quranAudioListener({super.key});
 
   @override
   Widget build(BuildContext context) {

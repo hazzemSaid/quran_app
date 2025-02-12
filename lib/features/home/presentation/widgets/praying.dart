@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class praying extends StatelessWidget {
-  const praying({super.key});
+class prayerScreen extends StatelessWidget {
+  const prayerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

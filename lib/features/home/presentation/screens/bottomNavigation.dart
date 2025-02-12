@@ -28,7 +28,7 @@ class _bottomNavigationState extends State<bottomNavigation> {
   Widget build(BuildContext context) {
     var bottomNavigationBar = BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Appconstrains.primaryColor,
+      backgroundColor: Colors.black,
       showSelectedLabels: true,
       showUnselectedLabels: true,
       elevation: 11,
@@ -45,29 +45,29 @@ class _bottomNavigationState extends State<bottomNavigation> {
           icon: Icon(
             FontAwesomeIcons.bookOpen,
           ),
-          label: 'Home',
+          label: 'ورد اليوم',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             FontAwesomeIcons.handsPraying,
           ),
-          label: 'azkar',
+          label: 'الاذكار',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             FontAwesomeIcons.kaaba,
           ),
-          label: 'quran',
+          label: 'الاستماع',
         ),
         BottomNavigationBarItem(
           icon: Icon(
             FontAwesomeIcons.mosque,
           ),
-          label: ' praying',
+          label: ' الصلاة',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'Profile',
+          label: 'المزيد',
         ),
       ],
     );

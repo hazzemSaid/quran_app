@@ -49,4 +49,11 @@ class MyAssets {
   /// Assets for Tasme3
   /// assets/images/tasme3.png
   static const String Tasme3 = "assets/images/tasme3.png";
+
+  static const String moon = "assets/images/moon.png";
+  static const String sun = "assets/images/morning.png";
+  static const String openhand = "assets/images/open-hands_z.png";
+  static const String shalat = "assets/images/shalat_z.png";
+  static const String weakup = 'assets/images/wake-up.png';
+  static const String sleep = 'assets/images/sleeping.png';
 }

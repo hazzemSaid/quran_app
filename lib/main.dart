@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quran_library/quran_library.dart';
 
 import 'util/route.dart';
 
 void main() {
+  QuranLibrary().init();
   runApp(const MyApp());
 }
 
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Quran App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: false,
         primarySwatch: Colors.blue,
       ),
       routerConfig: MyRoute.router,

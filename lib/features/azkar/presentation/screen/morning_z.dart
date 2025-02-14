@@ -1,164 +1,216 @@
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:quran_app/features/azkar/presentation/data/collaction/data_z.dart';
-import 'package:quran_app/features/azkar/presentation/data/model/azkarmodel.dart';
+import 'package:quran_app/features/azkar/data/collaction/data_z.dart';
+import 'package:quran_app/features/azkar/data/model/azkarmodel.dart';
 import 'package:quran_app/util/Appconstrains.dart';
 
+import '../widget/AzkarFinalizationWidget.dart';
+
 class AzkarMorningPage extends StatelessWidget {
-  AzkarMorningPage({super.key});
-  List<Azkarmodel> items =
-      DataZ().data.map((e) => Azkarmodel.fromJson(e)).toList();
+  final List<Azkarmodel> items;
+
+  AzkarMorningPage({super.key})
+      : items = DataZ().data.map((e) => Azkarmodel.fromJson(e)).toList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Appconstrains.primaryColor,
-          title: Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                'اذكار الصباح',
-                style: Appconstrains.cairo_bold.copyWith(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-              )),
-        ),
-        body: Column(
-          children: [
-            Container(
-              height: 50,
-              width: double.infinity,
-              color: Colors.red,
-              child: Text("sadasd"),
+      appBar: AppBar(
+        backgroundColor: Appconstrains.primaryColor,
+        title: Align(
+          alignment: Alignment.bottomRight,
+          child: Text(
+            'اذكار الصباح',
+            style: Appconstrains.cairo_bold.copyWith(
+              fontSize: 20,
+              color: Colors.white,
             ),
-            Expanded(child: zakarItemDisplay(items: items))
-          ],
-        ));
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 200,
+            child: ZakarItemDisplay(items: items),
+          ),
+        ],
+      ),
+    );
   }
 }
 
-class zakarItemDisplay extends StatefulWidget {
-  zakarItemDisplay({
+class AzkarProgressTracker extends StatelessWidget {
+  const AzkarProgressTracker({
     super.key,
-    required this.items,
+    required this.indx,
+    required this.maxsteps,
   });
 
+  final int maxsteps;
+  final int indx;
+
+  @override
+  Widget build(BuildContext context) {
+    return LinearProgressIndicator(
+      value: indx / maxsteps,
+      backgroundColor: Colors.grey,
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+    );
+  }
+}
+
+class ZakarItemDisplay extends StatefulWidget {
   final List<Azkarmodel> items;
+
+  ZakarItemDisplay({super.key, required this.items});
+
+  @override
+  State<ZakarItemDisplay> createState() => _ZakarItemDisplayState();
+}
+
+class _ZakarItemDisplayState extends State<ZakarItemDisplay> {
+  late ValueNotifier<double> progress;
   int indx = 0;
 
   @override
-  State<zakarItemDisplay> createState() => _zakarItemDisplayState();
-}
-
-class _zakarItemDisplayState extends State<zakarItemDisplay> {
-  late ValueNotifier<double>? progress;
-  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     progress = ValueNotifier<double>(0);
-    progress?.addListener(() {
-      print(progress?.value);
-      if (progress?.value == widget.items[widget.indx].count * 1.0) {
-        widget.indx++;
-        progress?.value = 0;
-        if (widget.indx == widget.items.length) {
-          widget.indx = 0;
-          // navigration to success page to finish the azkar
-        }
+    progress.addListener(() {
+      if (progress.value == widget.items[indx].count * 1.0) {
+        setState(() {
+          indx++;
+          progress.value = 0;
+          if (indx == widget.items.length) {
+            indx = 0;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AzkarFinalizationWidget(),
+                ),
+              );
+            });
+          }
+        });
       }
     });
   }
 
   @override
+  void dispose() {
+    progress.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        setState(() {
-          progress?.value = (progress!.value + 1);
-        });
+        progress.value += 1;
       },
-      child: Container(
-        color: Colors.deepPurple,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              flex: 6,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Text(
-                  textAlign: TextAlign.right,
-                  widget.items[widget.indx].text,
-                  style: Appconstrains.cairo_bold.copyWith(
-                    fontSize: 20,
-                  ),
-                ),
+      child: Column(
+        children: [
+          AzkarProgressTracker(
+            indx: indx,
+            maxsteps: widget.items.length,
+          ),
+          Expanded(
+            flex: 200,
+            child: Container(
+              color: Colors.black,
+              padding: EdgeInsets.only(
+                top: 10,
+                bottom: 10,
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        FontAwesomeIcons.share,
-                        color: Colors.white,
-                      )),
-                  DashedCircularProgressBar.square(
-                    dimensions: 150,
-                    progress: progress!.value,
-                    valueNotifier: progress,
-                    maxProgress: widget.items[widget.indx].count * 1.0,
-                    foregroundColor: Colors.green,
-                    backgroundColor: const Color(0xffeeeeee),
-                    foregroundStrokeWidth: 7,
-                    backgroundStrokeWidth: 7,
-                    foregroundGapSize: 5,
-                    foregroundDashSize: 55,
-                    backgroundGapSize: 5,
-                    backgroundDashSize: 55,
-                    animation: true,
-                    animationDuration: Duration(milliseconds: 0),
-                    child: Center(
-                      child: Text(
-                        "${progress!.value.toInt()}",
-                        style: Appconstrains.cairo_bold.copyWith(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: 8.0,
+                      top: 10,
+                    ),
+                    child: Text(
+                      widget.items[indx].text,
+                      textAlign: TextAlign.right,
+                      style: Appconstrains.cairo_bold.copyWith(
+                        fontSize: 20,
+                        color: Color(0xffeeeeee),
                       ),
                     ),
                   ),
+                  SizedBox(height: 10),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("مرة",
-                          style: Appconstrains.cairo_bold.copyWith(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
-                      Text(
-                        "${widget.items[widget.indx].count}",
-                        style: Appconstrains.cairo_bold.copyWith(
-                          fontSize: 20,
+                      IconButton(
+                        onPressed: () {
+                          // Handle share logic
+                        },
+                        icon: Icon(
+                          FontAwesomeIcons.share,
                           color: Colors.white,
                         ),
+                      ),
+                      ValueListenableBuilder<double>(
+                        valueListenable: progress,
+                        builder: (context, value, child) {
+                          return DashedCircularProgressBar.square(
+                            dimensions: 90,
+                            progress: value,
+                            valueNotifier: progress,
+                            maxProgress: widget.items[indx].count * 1.0,
+                            foregroundColor: Colors.green,
+                            backgroundColor: const Color(0xffeeeeee),
+                            foregroundStrokeWidth: 7,
+                            backgroundStrokeWidth: 7,
+                            foregroundGapSize: 5,
+                            foregroundDashSize: 55,
+                            backgroundGapSize: 5,
+                            backgroundDashSize: 55,
+                            animation:
+                                false, // Disable animation for performance
+                            child: Center(
+                              child: Text(
+                                "${value.toInt()}",
+                                style: Appconstrains.cairo_bold.copyWith(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "مرة",
+                            style: Appconstrains.cairo_bold.copyWith(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "${widget.items[indx].count}",
+                            style: Appconstrains.cairo_bold.copyWith(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

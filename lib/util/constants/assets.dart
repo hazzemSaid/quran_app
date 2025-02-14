@@ -56,4 +56,5 @@ class MyAssets {
   static const String shalat = "assets/images/shalat_z.png";
   static const String weakup = 'assets/images/wake-up.png';
   static const String sleep = 'assets/images/sleeping.png';
+  static const String end_azkar_animation_file = "assets/animation/end_z.json";
 }

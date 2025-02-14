@@ -45,4 +45,6 @@ class Appconstrains {
     fontWeight: FontWeight.w300,
     color: Colors.black,
   );
+
+  static var therd;
 }

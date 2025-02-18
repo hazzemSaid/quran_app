@@ -11,7 +11,11 @@ class AzkarMorningPage extends StatelessWidget {
   final List<Azkarmodel> items;
 
   AzkarMorningPage({super.key})
-      : items = DataZ().data.map((e) => Azkarmodel.fromJson(e)).toList();
+      : items = DataZ()
+            .morning_data
+            .map<Azkarmodel>(
+                (e) => Azkarmodel.fromJson(e as Map<String, dynamic>))
+            .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +33,10 @@ class AzkarMorningPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 200,
+      body: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
             child: ZakarItemDisplay(items: items),
           ),
         ],

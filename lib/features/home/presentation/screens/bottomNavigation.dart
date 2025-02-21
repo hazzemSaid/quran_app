@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../util/Appconstrains.dart';
-import '../widgets/alzakr.dart';
+import '../../../azkar/presentation/screen/alzakr.dart';
 import '../widgets/homescreen.dart';
 import '../widgets/listenquran.dart';
 import '../widgets/praying.dart';
-import '../widgets/profile.dart';
+import '../../../profile/presentation/view/screens/profile.dart';
 
 class bottomNavigation extends StatefulWidget {
   const bottomNavigation({super.key});

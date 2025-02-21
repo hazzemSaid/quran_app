@@ -1,21 +1,20 @@
-import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart'
-    show DashedCircularProgressBar;
+import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'
-    show FontAwesomeIcons;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quran_app/features/azkar/data/collaction/data_z.dart';
+import 'package:quran_app/features/azkar/data/model/azkarmodel.dart';
+import 'package:quran_app/util/Appconstrains.dart';
 
-import '../../../../util/Appconstrains.dart' show Appconstrains;
-import '../../data/collaction/data_z.dart' show DataZ;
-import '../../data/model/azkarmodel.dart' show Azkarmodel;
-import '../widget/AzkarFinalizationWidget.dart' show AzkarFinalizationWidget;
+import 'AzkarFinalizationWidget.dart';
 
-class AzkarNightPage extends StatelessWidget {
+class AzkarMorningPage extends StatelessWidget {
   final List<Azkarmodel> items;
 
-  AzkarNightPage({super.key})
+  AzkarMorningPage({super.key})
       : items = DataZ()
-            .night_data
-            .map<Azkarmodel>((e) => Azkarmodel.fromJson(e))
+            .morning_data
+            .map<Azkarmodel>(
+                (e) => Azkarmodel.fromJson(e as Map<String, dynamic>))
             .toList();
 
   @override
@@ -26,7 +25,7 @@ class AzkarNightPage extends StatelessWidget {
         title: Align(
           alignment: Alignment.bottomRight,
           child: Text(
-            'اذكار المساء',
+            'اذكار الصباح',
             style: Appconstrains.cairo_bold.copyWith(
               fontSize: 20,
               color: Colors.white,

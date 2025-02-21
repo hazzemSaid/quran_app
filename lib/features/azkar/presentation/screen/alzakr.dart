@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/features/azkar/presentation/screen/after_pray_z.dart';
-import 'package:quran_app/features/azkar/presentation/screen/before_pray_z.dart';
-import 'package:quran_app/features/azkar/presentation/screen/morning_z.dart';
-import 'package:quran_app/features/azkar/presentation/screen/night_z.dart';
-import 'package:quran_app/features/azkar/presentation/screen/sleep_z.dart';
-import 'package:quran_app/features/azkar/presentation/screen/wakeup_z.dart';
+import 'package:quran_app/features/azkar/presentation/widget/after_pray_z.dart';
+import 'package:quran_app/features/azkar/presentation/widget/before_pray_z.dart';
+import 'package:quran_app/features/azkar/presentation/widget/morning_z.dart';
+import 'package:quran_app/features/azkar/presentation/widget/night_z.dart';
+import 'package:quran_app/features/azkar/presentation/widget/sleep_z.dart';
+import 'package:quran_app/features/azkar/presentation/widget/wakeup_z.dart';
 import 'package:quran_app/util/constants/assets.dart';
 
 import '../../../../util/Appconstrains.dart';

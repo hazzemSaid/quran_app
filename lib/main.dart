@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:quran_library/quran_library.dart';
 
 import 'util/route.dart';
 
-void main() {
+void main() async {
   QuranLibrary().init();
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDirectory =
+      await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDirectory.path);
+  await Hive.openBox('appBox');
   runApp(const MyApp());
 }
 

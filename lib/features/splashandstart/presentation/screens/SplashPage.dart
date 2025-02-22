@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:quran_app/util/route.dart';
 
 import '../../../../util/Appconstrains.dart';
@@ -14,6 +15,23 @@ class Splashpage extends StatefulWidget {
 
 class _SplashpageState extends State<Splashpage> {
   @override
+  void initState() {
+    super.initState();
+    _checkFirstLaunch();
+  }
+
+  void _checkFirstLaunch() async {
+    var box = Hive.box('appBox');
+    bool isOpenedBefore = box.get('isOpenedBefore', defaultValue: false);
+
+    if (!isOpenedBefore) {
+      // First launch, set the flag to true
+      await box.put('isOpenedBefore', true);
+    } else {
+      context.go(MyRoute.getstart);
+    }
+  }
+
   void didChangeDependencies() {
     super.didChangeDependencies();
     Future.delayed(Duration(seconds: 4), () {

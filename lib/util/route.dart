@@ -24,21 +24,35 @@ class MyRoute {
   static const String onbording = '/onbording';
 
   static final GoRouter router = GoRouter(routes: [
-    GoRoute(path: onbording, builder: (context, state) => FirstOnbording()),
     GoRoute(
       path: '/',
       builder: (context, state) => Splashpage(),
     ),
     GoRoute(
-      path: getstart,
+      path: '/onbording',
+      name: onbording, // Add name parameter
+      builder: (context, state) => FirstOnbording(),
+    ),
+    GoRoute(
+      path: '/getstart',
+      name: getstart, // Add name parameter
       builder: (context, state) => Getstart(),
     ),
     GoRoute(
-      path: register,
+      path: '/register',
+      name: register, // Add name parameter
       builder: (context, state) => MobileRegistration(),
     ),
-    GoRoute(path: login, builder: (context, state) => MobileLoginView()),
-    GoRoute(path: home, builder: (context, state) => bottomNavigation()),
+    GoRoute(
+      path: '/login',
+      name: login, // Add name parameter
+      builder: (context, state) => MobileLoginView(),
+    ),
+    GoRoute(
+      path: '/home',
+      name: home, // Add name parameter
+      builder: (context, state) => bottomNavigation(),
+    ),
   ]);
 
   //using if condition to naviagtion

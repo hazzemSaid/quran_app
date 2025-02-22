@@ -17,28 +17,31 @@ class _SplashpageState extends State<Splashpage> {
   @override
   void initState() {
     super.initState();
+    print("-----------------");
+    print("SplashPage");
     _checkFirstLaunch();
   }
 
   void _checkFirstLaunch() async {
+    print("Checking first launch...");
     var box = Hive.box('appBox');
     bool isOpenedBefore = box.get('isOpenedBefore', defaultValue: false);
+    print("Is opened before: $isOpenedBefore");
 
-    if (!isOpenedBefore) {
-      // First launch, set the flag to true
-      await box.put('isOpenedBefore', true);
+    // Add a delay to show the splash screen for 2 seconds
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (isOpenedBefore) {
+      print("Navigating to home...");
+      context.goNamed(MyRoute.home);
     } else {
-      context.go(MyRoute.getstart);
+      print("Navigating to onboarding...");
+      box.put('isOpenedBefore', true);
+      context.goNamed(MyRoute.onbording);
     }
   }
 
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    Future.delayed(Duration(seconds: 4), () {
-      context.go(MyRoute.getstart);
-    });
-  }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: TweenAnimationBuilder(

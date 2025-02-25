@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quran_app/features/parytime/presentation/viewmodel/address_name/address_name_cubit.dart';
 import 'package:quran_app/features/profile/presentation/viewmodel/data_storage_hive/data_storage_hive_cubit.dart';
 
 import '../../../../util/Appconstrains.dart';
 import '../../../azkar/presentation/screen/alzakr.dart';
-import '../../../pary/presentation/view/screens/praying.dart';
+import '../../../parytime/presentation/view/screens/praying.dart';
 import '../../../profile/presentation/view/screens/profile.dart';
 import '../widgets/homescreen.dart';
-import '../widgets/quranReader.dart';
+import '../../../quranRead/presentation/view/screens/quranReader.dart';
 
 class bottomNavigation extends StatefulWidget {
   const bottomNavigation({super.key});
@@ -23,7 +24,10 @@ class _bottomNavigationState extends State<bottomNavigation> {
     mainHomeScreen(),
     alzkarWidget(),
     quranReader(),
-    prayerScreen(),
+    BlocProvider<AddressNameCubit>(
+      create: (context) => AddressNameCubit()..getAddressFromLatLng(),
+      child: prayerScreen(),
+    ),
     BlocProvider<DataStorageHiveCubit>(
       create: (context) => DataStorageHiveCubit(),
       child: userProfile(),

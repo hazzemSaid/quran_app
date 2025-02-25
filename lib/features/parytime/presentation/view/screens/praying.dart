@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
+import 'package:quran_app/features/parytime/presentation/view/widges/address_name.dart';
 import 'package:quran_app/util/Appconstrains.dart';
 
 class prayerScreen extends StatelessWidget {
@@ -29,7 +30,9 @@ class prayerScreen extends StatelessWidget {
                               Icons.settings,
                               color: Appconstrains.secondaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              // print(await getAddressFromLatLng());
+                            },
                           ),
                           IconButton(
                             icon: Icon(
@@ -56,13 +59,7 @@ class prayerScreen extends StatelessWidget {
                           const SizedBox(
                             height: 15.0,
                           ),
-                          Text(
-                            'الاسماعيلية',
-                            style: Appconstrains.tajawal_medium.copyWith(
-                              color: Appconstrains.secondaryColor,
-                              fontSize: 20.0,
-                            ),
-                          ),
+                          address_name(),
                         ],
                       ),
                     ],

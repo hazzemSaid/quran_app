@@ -17,8 +17,7 @@ class _SplashpageState extends State<Splashpage> {
   @override
   void initState() {
     super.initState();
-    print("-----------------");
-    print("SplashPage");
+
     _checkFirstLaunch();
   }
 
@@ -29,14 +28,17 @@ class _SplashpageState extends State<Splashpage> {
     print("Is opened before: $isOpenedBefore");
 
     // Add a delay to show the splash screen for 2 seconds
-    await Future.delayed(const Duration(seconds: 3));
 
     if (isOpenedBefore) {
       print("Navigating to home...");
+      await Future.delayed(const Duration(seconds: 3, milliseconds: 500));
+
       context.goNamed(MyRoute.home);
     } else {
       print("Navigating to onboarding...");
       box.put('isOpenedBefore', true);
+      await Future.delayed(const Duration(seconds: 3));
+
       context.goNamed(MyRoute.onbording);
     }
   }

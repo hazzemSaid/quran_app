@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quran_app/features/profile/presentation/viewmodel/data_storage_hive/data_storage_hive_cubit.dart';
 
 import '../../../../util/Appconstrains.dart';
 import '../../../azkar/presentation/screen/alzakr.dart';
+import '../../../profile/presentation/view/screens/profile.dart';
 import '../widgets/homescreen.dart';
 import '../widgets/listenquran.dart';
 import '../widgets/praying.dart';
-import '../../../profile/presentation/view/screens/profile.dart';
 
 class bottomNavigation extends StatefulWidget {
   const bottomNavigation({super.key});
@@ -22,7 +24,10 @@ class _bottomNavigationState extends State<bottomNavigation> {
     alzkarWidget(),
     quranAudioListener(),
     prayerScreen(),
-    userProfile()
+    BlocProvider<DataStorageHiveCubit>(
+      create: (context) => DataStorageHiveCubit(),
+      child: userProfile(),
+    )
   ];
   @override
   Widget build(BuildContext context) {

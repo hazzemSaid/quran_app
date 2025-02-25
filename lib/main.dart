@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:quran_app/util/services/setupServiceLocator.dart'
+    show setupServiceLocator;
 import 'package:quran_library/quran_library.dart';
 
 import 'util/route.dart';
 
 void main() async {
+  setupServiceLocator();
   QuranLibrary().init();
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory =

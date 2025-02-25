@@ -29,10 +29,11 @@ class _bottomNavigationState extends State<bottomNavigation> {
     MultiBlocProvider(
       providers: [
         BlocProvider<AddressNameCubit>(
-          create: (context) => getIt<AddressNameCubit>(),
+          create: (context) =>
+              getIt<AddressNameCubit>()..getAddressFromLatLng(),
         ),
         BlocProvider<ParytimeCubit>(
-          create: (context) => getIt<ParytimeCubit>(),
+          create: (context) => getIt<ParytimeCubit>()..getParytime(),
         ),
       ],
       child: prayerScreen(),

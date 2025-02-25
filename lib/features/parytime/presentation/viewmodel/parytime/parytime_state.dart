@@ -8,7 +8,7 @@ class ParytimeInitial extends ParytimeState {}
 class ParytimeLoading extends ParytimeState {}
 
 class ParytimeLoaded extends ParytimeState {
-  final Praytimemodel praytimemodel;
+  final PrayerTimeModel praytimemodel;
 
   ParytimeLoaded(this.praytimemodel);
 }

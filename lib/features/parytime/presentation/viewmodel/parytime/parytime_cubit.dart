@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:meta/meta.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:meta/meta.dart';
 import 'package:quran_app/features/parytime/data/api/parytimeAPI.dart';
 
-import '../../../data/model/praytimemodel.dart' show Praytimemodel;
+import '../../../data/model/praytimemodel.dart'
+    show PrayerTimeModel, Praytimemodel;
 
 part 'parytime_state.dart';
 
@@ -53,7 +54,7 @@ class ParytimeCubit extends Cubit<ParytimeState> {
           latitude: latitude,
           longitude: longitude,
         );
-        final praytimemodel = Praytimemodel.fromJson(parytime.data);
+        final praytimemodel = PrayerTimeModel.fromMap(parytime.data);
         emit(ParytimeLoaded(praytimemodel));
         return;
       } catch (e) {

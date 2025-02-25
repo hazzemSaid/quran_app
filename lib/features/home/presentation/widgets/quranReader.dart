@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quran_library/quran_library.dart';
 
-class quranAudioListener extends StatelessWidget {
-  const quranAudioListener({super.key});
+class quranReader extends StatelessWidget {
+  const quranReader({super.key});
 
   @override
   Widget build(BuildContext context) {

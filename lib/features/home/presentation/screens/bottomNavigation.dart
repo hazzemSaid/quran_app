@@ -5,10 +5,10 @@ import 'package:quran_app/features/profile/presentation/viewmodel/data_storage_h
 
 import '../../../../util/Appconstrains.dart';
 import '../../../azkar/presentation/screen/alzakr.dart';
+import '../../../pary/presentation/view/screens/praying.dart';
 import '../../../profile/presentation/view/screens/profile.dart';
 import '../widgets/homescreen.dart';
-import '../widgets/listenquran.dart';
-import '../widgets/praying.dart';
+import '../widgets/quranReader.dart';
 
 class bottomNavigation extends StatefulWidget {
   const bottomNavigation({super.key});
@@ -22,7 +22,7 @@ class _bottomNavigationState extends State<bottomNavigation> {
   final List<Widget> _screens = [
     mainHomeScreen(),
     alzkarWidget(),
-    quranAudioListener(),
+    quranReader(),
     prayerScreen(),
     BlocProvider<DataStorageHiveCubit>(
       create: (context) => DataStorageHiveCubit(),

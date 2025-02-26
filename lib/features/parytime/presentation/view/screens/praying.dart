@@ -12,7 +12,6 @@ import 'package:quran_app/util/constants/assets.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
-  int indx = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +37,6 @@ class PrayerScreen extends StatelessWidget {
                           MyAssets.maghrib,
                           MyAssets.isha,
                         ];
-                        indx = snapshot.data![2];
                         return Container(
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           decoration: BoxDecoration(
@@ -76,7 +74,6 @@ class PrayerScreen extends StatelessWidget {
                 ),
                 PrayerTimingList(
                   times: state.praytimemodel,
-                  indx: indx,
                 ),
               ],
             );
@@ -188,8 +185,7 @@ class PrayerDateSection extends StatelessWidget {
 /// **Prayer Timings List**
 class PrayerTimingList extends StatelessWidget {
   final PrayerTimeModel times;
-  final int indx;
-  const PrayerTimingList({super.key, required this.indx, required this.times});
+  const PrayerTimingList({super.key, required this.times});
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +208,6 @@ class PrayerTimingList extends StatelessWidget {
             final title = prayerTimes.keys.elementAt(index);
             final time = prayerTimes.values.elementAt(index);
             return PrayerTimeRow(
-              isactive: indx == index,
               title: title,
               time: time,
             );
@@ -227,44 +222,30 @@ class PrayerTimingList extends StatelessWidget {
 class PrayerTimeRow extends StatelessWidget {
   final String title;
   final String time;
-  final bool isactive;
-  const PrayerTimeRow(
-      {super.key,
-      required this.title,
-      required this.time,
-      required this.isactive});
+  const PrayerTimeRow({
+    super.key,
+    required this.title,
+    required this.time,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isactive
-            ? const Color.fromARGB(255, 221, 185, 56)
-            : Colors.transparent,
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.sizeOf(context).height * 0.01,
-        horizontal: MediaQuery.sizeOf(context).height * 0.01,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.notifications,
-                    color: Appconstrains.primaryColor, size: 30),
-              ),
-              Text(time,
-                  style: Appconstrains.tajawal_bold.copyWith(fontSize: 20.0)),
-            ],
-          ),
-          Text(title,
-              style: Appconstrains.tajawal_bold.copyWith(fontSize: 25.0)),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications,
+                  color: Appconstrains.primaryColor, size: 30),
+            ),
+            Text(time,
+                style: Appconstrains.tajawal_bold.copyWith(fontSize: 20.0)),
+          ],
+        ),
+        Text(title, style: Appconstrains.tajawal_bold.copyWith(fontSize: 25.0)),
+      ],
     );
   }
 }

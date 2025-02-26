@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:quran_app/features/QiblaDirection/presentation/view/screens/QiblaDirection.dart';
 import 'package:quran_app/features/parytime/data/model/praytimemodel.dart';
 import 'package:quran_app/features/parytime/presentation/view/funcitons/streaming_parytime.dart';
 import 'package:quran_app/features/parytime/presentation/view/widges/address_name.dart';
@@ -115,7 +116,10 @@ class PrayerHeader extends StatelessWidget {
               IconButton(
                 icon: const Icon(FontAwesomeIcons.kaaba,
                     color: Appconstrains.secondaryColor),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => QiblaCompass()));
+                },
               ),
             ],
           ),

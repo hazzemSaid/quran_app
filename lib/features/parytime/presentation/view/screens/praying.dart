@@ -230,22 +230,26 @@ class PrayerTimeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications,
-                  color: Appconstrains.primaryColor, size: 30),
-            ),
-            Text(time,
-                style: Appconstrains.tajawal_bold.copyWith(fontSize: 20.0)),
-          ],
-        ),
-        Text(title, style: Appconstrains.tajawal_bold.copyWith(fontSize: 25.0)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.notifications,
+                    color: Appconstrains.primaryColor, size: 30),
+              ),
+              Text(time,
+                  style: Appconstrains.tajawal_bold.copyWith(fontSize: 20.0)),
+            ],
+          ),
+          Text(title,
+              style: Appconstrains.tajawal_bold.copyWith(fontSize: 25.0)),
+        ],
+      ),
     );
   }
 }

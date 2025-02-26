@@ -1,4 +1,3 @@
-//https://api.aladhan.com/v1/timingsByCity/25-02-2025?city=Cairo&country=Egypt&method=2
 import 'package:dio/dio.dart';
 
 class ParytimeAPI {
@@ -10,7 +9,7 @@ class ParytimeAPI {
     required double longitude,
   }) async {
     final url = Uri.parse(
-        'https://api.aladhan.com/v1/timings/$date?latitude=$latitude&longitude=$longitude&method=2');
+        'https://api.aladhan.com/v1/timings/$date?latitude=$latitude&longitude=$longitude&method=1');
     final response = await _dio.get(url.toString());
     return response;
   }

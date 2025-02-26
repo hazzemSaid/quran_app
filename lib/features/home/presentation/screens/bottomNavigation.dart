@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quran_app/features/parytime/presentation/view/screens/praying.dart';
 import 'package:quran_app/features/parytime/presentation/viewmodel/address_name/address_name_cubit.dart';
 import 'package:quran_app/features/profile/presentation/viewmodel/data_storage_hive/data_storage_hive_cubit.dart';
 import 'package:quran_app/util/services/setupServiceLocator.dart';
 
 import '../../../../util/Appconstrains.dart';
 import '../../../azkar/presentation/screen/alzakr.dart';
-import '../../../parytime/presentation/view/screens/praying.dart';
 import '../../../parytime/presentation/viewmodel/parytime/parytime_cubit.dart';
 import '../../../profile/presentation/view/screens/profile.dart';
 import '../../../quranRead/presentation/view/screens/quranReader.dart';
@@ -36,7 +36,7 @@ class _bottomNavigationState extends State<bottomNavigation> {
           create: (context) => getIt<ParytimeCubit>()..getParytime(),
         ),
       ],
-      child: prayerScreen(),
+      child: PrayerScreen(),
     ),
     BlocProvider<DataStorageHiveCubit>(
       create: (context) => DataStorageHiveCubit(),

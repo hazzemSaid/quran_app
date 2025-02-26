@@ -45,7 +45,7 @@ class ParytimeCubit extends Cubit<ParytimeState> {
       double longitude = position.longitude;
 
       // Format the date as 'yyyy-MM-dd'
-      final String date = intl.DateFormat('yyyy-MM-dd').format(DateTime.now());
+      final String date = intl.DateFormat('dd-MM-yyyy').format(DateTime.now());
 
       // Fetch prayer times using API
       try {

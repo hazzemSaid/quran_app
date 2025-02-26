@@ -59,4 +59,9 @@ class MyAssets {
   static const String end_azkar_animation_file = "assets/animation/end_z.json";
   static const String loading_animation =
       "assets/animation/Animationloading.json";
+  static const String fajr = "assets/images/fajr.png";
+  static const String dhuhr = "assets/images/dhuhr.png";
+  static const String asr = "assets/images/asr.png";
+  static const String maghrib = "assets/images/magrib.png";
+  static const String isha = "assets/images/isha.png";
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quran_app/features/parytime/data/model/praytimemodel.dart';
+import 'package:quran_app/features/parytime/presentation/view/funcitons/streaming_parytime.dart';
 import 'package:quran_app/features/parytime/presentation/view/widges/address_name.dart';
 import 'package:quran_app/features/parytime/presentation/view/widges/time_remaind_withstream.dart';
 import 'package:quran_app/features/parytime/presentation/viewmodel/parytime/parytime_cubit.dart';
@@ -10,8 +11,8 @@ import 'package:quran_app/util/Appconstrains.dart';
 import 'package:quran_app/util/constants/assets.dart';
 
 class PrayerScreen extends StatelessWidget {
-  const PrayerScreen({super.key});
-
+  PrayerScreen({super.key});
+  int indx = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,34 +25,59 @@ class PrayerScreen extends StatelessWidget {
             return Column(
               children: [
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage(MyAssets.Koran),
-                      fit: BoxFit.cover,
-                    )),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const PrayerHeader(),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.1),
-                          const Text(
-                            'باقي على الاذان',
-                            style: TextStyle(
-                                color: Color(0xC6FFFFFF), fontSize: 30),
+                  child: StreamBuilder<List>(
+                      stream:
+                          StreamingParyTime.func(times: state.praytimemodel),
+                      initialData: ["", "", 0],
+                      builder: (context, snapshot) {
+                        List<String> images = [
+                          MyAssets.fajr,
+                          MyAssets.fajr,
+                          MyAssets.dhuhr,
+                          MyAssets.asr,
+                          MyAssets.maghrib,
+                          MyAssets.isha,
+                        ];
+                        indx = snapshot.data![2];
+                        return Container(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage(
+                              images[snapshot.data![2]],
+                            ),
+                            fit: BoxFit.cover,
+                          )),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                const PrayerHeader(),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1),
+                                const Text(
+                                  'باقي على الاذان',
+                                  style: TextStyle(
+                                      color: Color(0xC6FFFFFF), fontSize: 30),
+                                ),
+                                const SizedBox(height: 8),
+                                time_remaind(
+                                  time_f: snapshot.data![1] ?? '',
+                                  time_s: snapshot.data![0] ?? '',
+                                ),
+                                const SizedBox(height: 30),
+                                PrayerDateSection(
+                                    prayTimeModel: state.praytimemodel),
+                              ],
+                            ),
                           ),
-                          const SizedBox(height: 8),
-                          time_remaind(times: state.praytimemodel),
-                          const SizedBox(height: 30),
-                          PrayerDateSection(prayTimeModel: state.praytimemodel),
-                        ],
-                      ),
-                    ),
-                  ),
+                        );
+                      }),
                 ),
-                PrayerTimingList(times: state.praytimemodel),
+                PrayerTimingList(
+                  times: state.praytimemodel,
+                  indx: indx,
+                ),
               ],
             );
           }
@@ -162,7 +188,8 @@ class PrayerDateSection extends StatelessWidget {
 /// **Prayer Timings List**
 class PrayerTimingList extends StatelessWidget {
   final PrayerTimeModel times;
-  const PrayerTimingList({super.key, required this.times});
+  final int indx;
+  const PrayerTimingList({super.key, required this.indx, required this.times});
 
   @override
   Widget build(BuildContext context) {
@@ -176,14 +203,21 @@ class PrayerTimingList extends StatelessWidget {
     };
 
     return Expanded(
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        itemCount: prayerTimes.length,
-        itemBuilder: (context, index) {
-          final title = prayerTimes.keys.elementAt(index);
-          final time = prayerTimes.values.elementAt(index);
-          return PrayerTimeRow(title: title, time: time);
-        },
+      child: Container(
+        decoration: BoxDecoration(),
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          itemCount: prayerTimes.length,
+          itemBuilder: (context, index) {
+            final title = prayerTimes.keys.elementAt(index);
+            final time = prayerTimes.values.elementAt(index);
+            return PrayerTimeRow(
+              isactive: indx == index,
+              title: title,
+              time: time,
+            );
+          },
+        ),
       ),
     );
   }
@@ -193,12 +227,26 @@ class PrayerTimingList extends StatelessWidget {
 class PrayerTimeRow extends StatelessWidget {
   final String title;
   final String time;
-  const PrayerTimeRow({super.key, required this.title, required this.time});
+  final bool isactive;
+  const PrayerTimeRow(
+      {super.key,
+      required this.title,
+      required this.time,
+      required this.isactive});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return Container(
+      decoration: BoxDecoration(
+        color: isactive
+            ? const Color.fromARGB(255, 221, 185, 56)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      padding: EdgeInsets.symmetric(
+        vertical: MediaQuery.sizeOf(context).height * 0.01,
+        horizontal: MediaQuery.sizeOf(context).height * 0.01,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

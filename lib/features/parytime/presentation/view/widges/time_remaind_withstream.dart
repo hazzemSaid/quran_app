@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/util/Appconstrains.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
 
 class time_remaind extends StatelessWidget {
   const time_remaind({

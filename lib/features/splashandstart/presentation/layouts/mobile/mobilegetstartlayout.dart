@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../util/Appconstrains.dart';
-import '../../../../../util/route.dart';
+import '../../../../../core/util/Appconstrains.dart';
+import '../../../../../core/util/route.dart';
 import '../../widgets/getStartedTextWidget.dart';
 import '../../widgets/splash_image.dart';
 

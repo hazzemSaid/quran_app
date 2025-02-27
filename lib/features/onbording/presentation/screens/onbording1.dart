@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/features/onbording/presentation/screens/onbording2.dart';
-import 'package:quran_app/util/Appconstrains.dart';
-import 'package:quran_app/util/constants/assets.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
+import 'package:quran_app/core/util/constants/assets.dart';
 
 class FirstOnbording extends StatelessWidget {
   @override

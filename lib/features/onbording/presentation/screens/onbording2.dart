@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/features/onbording/presentation/screens/onbording3.dart';
 
-import '../../../../util/Appconstrains.dart';
-import '../../../../util/constants/assets.dart';
+import '../../../../core/util/Appconstrains.dart';
+import '../../../../core/util/constants/assets.dart';
 
 class SecondOnbording extends StatelessWidget {
   @override

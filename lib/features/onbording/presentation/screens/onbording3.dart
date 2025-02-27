@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../util/Appconstrains.dart';
-import '../../../../util/constants/assets.dart';
+import '../../../../core/util/Appconstrains.dart';
+import '../../../../core/util/constants/assets.dart';
 import '../../../home/presentation/screens/bottomNavigation.dart';
 
 class ThirdOnbording extends StatelessWidget {

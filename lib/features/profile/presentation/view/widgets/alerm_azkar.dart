@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../util/Appconstrains.dart' show Appconstrains;
+import '../../../../../core/util/Appconstrains.dart' show Appconstrains;
 
 class alerm_azkar extends StatelessWidget {
   const alerm_azkar({

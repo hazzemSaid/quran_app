@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quran_app/features/azkar/data/collaction/data_z.dart';
 import 'package:quran_app/features/azkar/data/model/azkarmodel.dart';
-import 'package:quran_app/util/Appconstrains.dart';
-import 'package:quran_app/util/widgets/ZakarItemDisplay.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
+import 'package:quran_app/core/util/widgets/ZakarItemDisplay.dart';
 
 import 'AzkarFinalizationWidget.dart';
 

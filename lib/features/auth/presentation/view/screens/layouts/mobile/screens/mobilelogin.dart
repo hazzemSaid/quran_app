@@ -3,9 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:quran_app/features/auth/presentation/view/screens/layouts/mobile/widgets/Row_of_register.dart';
-import 'package:quran_app/util/route.dart';
+import 'package:quran_app/core/util/route.dart';
 
-import '../../../../../../../../util/Appconstrains.dart';
+import '../../../../../../../../core/util/Appconstrains.dart';
 import '../../../../../../../splashandstart/presentation/widgets/splash_image.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/email_text_field.dart';

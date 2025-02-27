@@ -7,9 +7,9 @@ import 'package:quran_app/features/azkar/data/collaction/data_z.dart'
     show DataZ;
 import 'package:quran_app/features/azkar/presentation/widget/AzkarFinalizationWidget.dart'
     show AzkarFinalizationWidget;
-import 'package:quran_app/util/widgets/ZakarItemDisplay.dart';
+import 'package:quran_app/core/util/widgets/ZakarItemDisplay.dart';
 
-import '../../../../util/Appconstrains.dart' show Appconstrains;
+import '../../../../core/util/Appconstrains.dart' show Appconstrains;
 import '../../data/model/azkarmodel.dart';
 
 class BeforePrayZ extends StatelessWidget {

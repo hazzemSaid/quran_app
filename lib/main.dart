@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:quran_app/util/services/setupServiceLocator.dart'
+import 'package:quran_app/core/bloc/bloc.dart';
+import 'package:quran_app/core/util/services/setupServiceLocator.dart'
     show setupServiceLocator;
 import 'package:quran_library/quran_library.dart';
 
-import 'util/route.dart';
+import 'core/util/route.dart';
 
 void main() async {
+  MyBlocObserver();
   setupServiceLocator();
   QuranLibrary().init();
   WidgetsFlutterBinding.ensureInitialized();

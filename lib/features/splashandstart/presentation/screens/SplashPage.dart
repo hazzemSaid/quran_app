@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
-import 'package:quran_app/util/route.dart';
+import 'package:quran_app/core/util/route.dart';
 
-import '../../../../util/Appconstrains.dart';
+import '../../../../core/util/Appconstrains.dart';
 import '../widgets/splash_image.dart';
 
 class Splashpage extends StatefulWidget {

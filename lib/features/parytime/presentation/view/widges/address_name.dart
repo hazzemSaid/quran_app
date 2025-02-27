@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/features/parytime/presentation/viewmodel/address_name/address_name_cubit.dart';
 
-import '../../../../../util/Appconstrains.dart';
+import '../../../../../core/util/Appconstrains.dart';
 
 class address_name extends StatelessWidget {
   const address_name({

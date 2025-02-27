@@ -8,8 +8,8 @@ import 'package:quran_app/features/parytime/presentation/view/funcitons/streamin
 import 'package:quran_app/features/parytime/presentation/view/widges/address_name.dart';
 import 'package:quran_app/features/parytime/presentation/view/widges/time_remaind_withstream.dart';
 import 'package:quran_app/features/parytime/presentation/viewmodel/parytime/parytime_cubit.dart';
-import 'package:quran_app/util/Appconstrains.dart';
-import 'package:quran_app/util/constants/assets.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
+import 'package:quran_app/core/util/constants/assets.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});

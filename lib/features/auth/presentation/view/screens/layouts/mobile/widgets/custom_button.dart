@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../util/Appconstrains.dart';
+import '../../../../../../../../core/util/Appconstrains.dart';
 
 class custom_button extends StatelessWidget {
   const custom_button({super.key, required this.text});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
-import '../../../../../../../../util/Appconstrains.dart';
+import '../../../../../../../../core/util/Appconstrains.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/email_text_field.dart';
 import '../widgets/value_listenableBuilder_for_password.dart';

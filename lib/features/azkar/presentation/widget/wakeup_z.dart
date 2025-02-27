@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quran_app/features/azkar/data/collaction/data_z.dart'
     show DataZ;
 import 'package:quran_app/features/azkar/data/model/azkarmodel.dart';
-import 'package:quran_app/util/Appconstrains.dart' show Appconstrains;
+import 'package:quran_app/core/util/Appconstrains.dart' show Appconstrains;
 
-import '../../../../util/widgets/ZakarItemDisplay.dart';
+import '../../../../core/util/widgets/ZakarItemDisplay.dart';
 
 class wakeupAzkarPage extends StatelessWidget {
   final List<Azkarmodel> items;

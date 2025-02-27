@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../util/Appconstrains.dart';
+import '../../../../../core/util/Appconstrains.dart';
 import '../../widgets/getStartedTextWidget.dart';
 import '../../widgets/splash_image.dart';
 

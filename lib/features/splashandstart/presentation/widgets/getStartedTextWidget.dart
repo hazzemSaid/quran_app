@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../util/Appconstrains.dart';
+import '../../../../core/util/Appconstrains.dart';
 
 class getStartedTextWidget extends StatelessWidget {
   final String title;

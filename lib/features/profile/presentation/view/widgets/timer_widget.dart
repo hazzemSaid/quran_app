@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../util/Appconstrains.dart' show Appconstrains;
+import '../../../../../core/util/Appconstrains.dart' show Appconstrains;
 
 class timer_widget extends StatelessWidget {
   final String title;

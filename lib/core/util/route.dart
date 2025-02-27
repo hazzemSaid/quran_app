@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:quran_app/features/splashandstart/presentation/screens/SplashPage.dart';
 
-import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobilelogin.dart';
-import '../features/auth/presentation/view/screens/layouts/mobile/screens/mobileregister.dart';
-import '../features/home/presentation/screens/bottomNavigation.dart';
-import '../features/onbording/presentation/screens/onbording1.dart';
-import '../features/splashandstart/presentation/screens/getstart.dart';
+import '../../features/auth/presentation/view/screens/layouts/mobile/screens/mobilelogin.dart';
+import '../../features/auth/presentation/view/screens/layouts/mobile/screens/mobileregister.dart';
+import '../../features/home/presentation/screens/bottomNavigation.dart';
+import '../../features/onbording/presentation/screens/onbording1.dart';
+import '../../features/splashandstart/presentation/screens/getstart.dart';
 
 class MyRoute {
   static const String login = '/login';

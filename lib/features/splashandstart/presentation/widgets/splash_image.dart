@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../util/constants/assets.dart';
+import '../../../../core/util/constants/assets.dart';
 
 class splashImage extends StatelessWidget {
   const splashImage({

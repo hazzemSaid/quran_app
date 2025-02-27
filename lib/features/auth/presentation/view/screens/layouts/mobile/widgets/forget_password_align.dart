@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../util/Appconstrains.dart';
+import '../../../../../../../../core/util/Appconstrains.dart';
 
 class forget_password_align extends StatelessWidget {
   const forget_password_align({

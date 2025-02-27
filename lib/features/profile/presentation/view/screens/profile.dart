@@ -7,7 +7,7 @@ import 'package:quran_app/features/profile/presentation/view/widgets/profile_app
 import 'package:quran_app/features/profile/presentation/view/widgets/profile_snn_quran.dart';
 import 'package:quran_app/features/profile/presentation/view/widgets/timer_widget.dart';
 import 'package:quran_app/features/profile/presentation/viewmodel/data_storage_hive/data_storage_hive_cubit.dart';
-import 'package:quran_app/util/Appconstrains.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
 
 class userProfile extends StatefulWidget {
   const userProfile({super.key});

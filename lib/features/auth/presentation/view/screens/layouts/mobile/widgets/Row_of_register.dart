@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../../../util/Appconstrains.dart';
+import '../../../../../../../../core/util/Appconstrains.dart';
 
 class Row_of_register extends StatelessWidget {
   const Row_of_register({

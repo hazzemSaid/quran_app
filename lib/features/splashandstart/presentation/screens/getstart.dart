@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../util/responsive/responsivegetstart.dart';
+import '../../../../core/util/responsive/responsivegetstart.dart';
 import '../layouts/desktop/getStartedDesktopLayout.dart';
 import '../layouts/mobile/mobilegetstartlayout.dart';
 

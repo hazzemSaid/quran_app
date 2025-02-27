@@ -5,9 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quran_app/features/azkar/data/model/azkarmodel.dart';
 import 'package:quran_app/features/azkar/presentation/widget/AzkarFinalizationWidget.dart'
     show AzkarFinalizationWidget;
-import 'package:quran_app/util/widgets/ZakarItemDisplay.dart';
+import 'package:quran_app/core/util/widgets/ZakarItemDisplay.dart';
 
-import '../../../../util/Appconstrains.dart' show Appconstrains;
+import '../../../../core/util/Appconstrains.dart' show Appconstrains;
 import '../../data/collaction/data_z.dart' show DataZ;
 
 class AfterPrayZ extends StatelessWidget {

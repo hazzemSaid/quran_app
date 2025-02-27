@@ -5,9 +5,9 @@ import 'package:quran_app/features/azkar/presentation/widget/morning_z.dart';
 import 'package:quran_app/features/azkar/presentation/widget/night_z.dart';
 import 'package:quran_app/features/azkar/presentation/widget/sleep_z.dart';
 import 'package:quran_app/features/azkar/presentation/widget/wakeup_z.dart';
-import 'package:quran_app/util/constants/assets.dart';
+import 'package:quran_app/core/util/constants/assets.dart';
 
-import '../../../../util/Appconstrains.dart';
+import '../../../../core/util/Appconstrains.dart';
 
 class alzkarWidget extends StatelessWidget {
   const alzkarWidget({super.key});

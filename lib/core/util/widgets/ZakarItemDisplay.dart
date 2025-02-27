@@ -2,10 +2,10 @@ import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
-import 'package:quran_app/util/Appconstrains.dart' show Appconstrains;
+import 'package:quran_app/core/util/Appconstrains.dart' show Appconstrains;
 
-import '../../features/azkar/data/model/azkarmodel.dart';
-import '../../features/azkar/presentation/widget/AzkarFinalizationWidget.dart'
+import '../../../features/azkar/data/model/azkarmodel.dart';
+import '../../../features/azkar/presentation/widget/AzkarFinalizationWidget.dart'
     show AzkarFinalizationWidget;
 import 'AzkarProgressTracker.dart';
 

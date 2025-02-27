@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../util/Appconstrains.dart' show Appconstrains;
-import '../../../../util/widgets/ZakarItemDisplay.dart';
+import '../../../../core/util/Appconstrains.dart' show Appconstrains;
+import '../../../../core/util/widgets/ZakarItemDisplay.dart';
 import '../../data/collaction/data_z.dart' show DataZ;
 import '../../data/model/azkarmodel.dart' show Azkarmodel;
 

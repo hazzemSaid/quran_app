@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../util/Appconstrains.dart' show Appconstrains;
+import '../../../../../core/util/Appconstrains.dart' show Appconstrains;
 
 class profile_app_bar extends StatelessWidget {
   const profile_app_bar({

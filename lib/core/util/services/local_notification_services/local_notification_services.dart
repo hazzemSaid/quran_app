@@ -1,22 +1,36 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class LocalNotificationServices {
-  static FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  static final FlutterLocalNotificationsPlugin
+      _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   static Future<void> init() async {
-    AndroidInitializationSettings initializationSettingsAndroid =
-        const AndroidInitializationSettings("@mipmap/ic_launcher");
+    // Initialize the time zone database
+    tz.initializeTimeZones();
 
-    DarwinInitializationSettings initializationSettingsIOS =
-        const DarwinInitializationSettings(
+    // Get the local time zone
+    final String timeZoneName = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZoneName));
+
+    print(
+        'Local Time Zone: ${tz.local.name}'); // Debugging: Print the local time zone
+
+    // Initialize the notifications plugin
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings("@mipmap/ic_launcher");
+
+    const DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
     );
 
-    InitializationSettings initializationSettings = InitializationSettings(
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
@@ -24,24 +38,13 @@ class LocalNotificationServices {
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  // static Future<void> shownotification() async {
-  //   final details = await NotificationDetails(
-  //     android: AndroidNotificationDetails(
-  //         'prayer_channel_id', 'Prayer Notifications',
-  //         importance: Importance.max, priority: Priority.high),
-  //     iOS: DarwinNotificationDetails(),
-  //   );
-  //   await _flutterLocalNotificationsPlugin.show(
-  //       0, 'Prayer Notifications', 'Your prayer time is near', details);
-  // }
-
   static Future<void> scheduleDailyNotification(
       int id, String title, String body, int hour, int minute) async {
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
       body,
-      _nextInstanceOfTime(hour, minute),
+      await _nextInstanceOfTime(hour, minute),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'prayer_channel_id',
@@ -53,21 +56,31 @@ class LocalNotificationServices {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
-      androidScheduleMode:
-          AndroidScheduleMode.exactAllowWhileIdle, // Repeats daily
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
   }
 
-  static tz.TZDateTime _nextInstanceOfTime(int hour, int minute) {
+  static Future<tz.TZDateTime> _nextInstanceOfTime(int hour, int minute) async {
+    // Get the current time in the local time zone
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-    tz.TZDateTime scheduledDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
 
+    // Create a TZDateTime object for the scheduled time today
+    tz.TZDateTime scheduledDate = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    );
+
+    // If the scheduled time is in the past, add one day
     if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate
-          .add(Duration(days: 1)); // Schedule for next day if time has passed
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
 
+    print(
+        'Scheduled Date: $scheduledDate'); // Debugging: Print the scheduled date
     return scheduledDate;
   }
 

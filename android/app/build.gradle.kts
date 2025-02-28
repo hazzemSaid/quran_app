@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.quran_app"
-    compileSdk = 34 // تأكد من أن هذا متوافق مع Flutter
+    compileSdk = 35 // تأكد من أن هذا متوافق مع Flutter
 ndkVersion ="28.0.13004108"
     // ndkVersion = "25.2.9519653" // يمكنك تغييره حسب إصدار NDK لديك
 

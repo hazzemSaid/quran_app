@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
+import 'package:quran_app/core/util/services/local_notification_services/local_notification_services.dart';
 import 'package:quran_app/features/profile/presentation/view/widgets/alerm_azkar.dart';
 import 'package:quran_app/features/profile/presentation/view/widgets/profile_app_bar.dart';
 import 'package:quran_app/features/profile/presentation/view/widgets/profile_snn_quran.dart';
 import 'package:quran_app/features/profile/presentation/view/widgets/timer_widget.dart';
 import 'package:quran_app/features/profile/presentation/viewmodel/data_storage_hive/data_storage_hive_cubit.dart';
-import 'package:quran_app/core/util/Appconstrains.dart';
 
 class userProfile extends StatefulWidget {
   const userProfile({super.key});
@@ -94,6 +95,33 @@ class _userProfileState extends State<userProfile> {
                       onChanged: (value) {
                         setState(() {
                           remaind_morning = value;
+                          //6
+                          if (value == false) {
+                            LocalNotificationServices.cancelNotification(6)
+                                .then((c) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('تم الغاء التنبيه ل اذكار الصباح'),
+                                ),
+                              );
+                            });
+                          } else {
+                            LocalNotificationServices.scheduleDailyNotification(
+                                    6,
+                                    'اذكار الصباح',
+                                    'حان الان وقت اذكار الصباح',
+                                    time_morning_z!.hour,
+                                    time_morning_z!.minute)
+                                .then((b) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('تم تفعيل التنبيه ل اذكار الصباح'),
+                                ),
+                              );
+                            });
+                          }
                           _saveToHive();
                         });
                       },
@@ -106,6 +134,21 @@ class _userProfileState extends State<userProfile> {
                         setState(() {
                           time_morning_z = val;
                           // Save data
+                          LocalNotificationServices.cancelNotification(6);
+                          LocalNotificationServices.scheduleDailyNotification(
+                                  6,
+                                  'اذكار الصباح',
+                                  'حان الان وقت اذكار الصباح',
+                                  time_morning_z!.hour,
+                                  time_morning_z!.minute)
+                              .then((b) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content:
+                                    Text('تم تفعيل التنبيه ل اذكار الصباح'),
+                              ),
+                            );
+                          });
                           _saveToHive();
                         });
                       },
@@ -115,6 +158,33 @@ class _userProfileState extends State<userProfile> {
                       value: remaind_night,
                       onChanged: (value) {
                         setState(() {
+                          //7
+                          if (value == false) {
+                            LocalNotificationServices.cancelNotification(7)
+                                .then((x) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('تم الغاء التنبيه ل اذكار المساء'),
+                                ),
+                              );
+                            });
+                          } else {
+                            LocalNotificationServices.scheduleDailyNotification(
+                                    7,
+                                    'اذكار المساء',
+                                    'حان الان وقت اذكار المساء',
+                                    time_night_z!.hour,
+                                    time_night_z!.minute)
+                                .then((b) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('تم تفعيل التنبيه ل اذكار المساء'),
+                                ),
+                              );
+                            });
+                          }
                           remaind_night = value;
                           _saveToHive();
                         });
@@ -128,6 +198,13 @@ class _userProfileState extends State<userProfile> {
                         setState(() {
                           time_night_z = val;
                           // Save data
+                          LocalNotificationServices.cancelNotification(7);
+                          LocalNotificationServices.scheduleDailyNotification(
+                              7,
+                              'اذكار المساء',
+                              'حان الان وقت اذكار المساء',
+                              time_night_z!.hour,
+                              time_night_z!.minute);
                           _saveToHive();
                         });
                       },

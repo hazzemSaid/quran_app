@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:quran_app/core/bloc/bloc.dart';
+import 'package:quran_app/core/util/services/local_notification_services/local_notification_services.dart';
 import 'package:quran_app/core/util/services/setupServiceLocator.dart'
     show setupServiceLocator;
 import 'package:quran_library/quran_library.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 import 'core/util/route.dart';
 
 void main() async {
-  MyBlocObserver();
-  setupServiceLocator();
-  QuranLibrary().init();
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  tz.initializeTimeZones();
+  QuranLibrary().init();
+  await LocalNotificationServices.init();
+  setupServiceLocator();
   final appDocumentDirectory =
       await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);

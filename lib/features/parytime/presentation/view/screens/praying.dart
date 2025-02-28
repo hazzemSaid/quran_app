@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
+import 'package:quran_app/core/util/Appconstrains.dart';
+import 'package:quran_app/core/util/constants/assets.dart';
+import 'package:quran_app/core/util/services/local_notification_services/local_notification_services.dart';
 import 'package:quran_app/features/QiblaDirection/presentation/view/screens/QiblaDirection.dart';
 import 'package:quran_app/features/parytime/data/model/praytimemodel.dart';
 import 'package:quran_app/features/parytime/presentation/view/funcitons/streaming_parytime.dart';
 import 'package:quran_app/features/parytime/presentation/view/widges/address_name.dart';
 import 'package:quran_app/features/parytime/presentation/view/widges/time_remaind_withstream.dart';
 import 'package:quran_app/features/parytime/presentation/viewmodel/parytime/parytime_cubit.dart';
-import 'package:quran_app/core/util/Appconstrains.dart';
-import 'package:quran_app/core/util/constants/assets.dart';
 
 class PrayerScreen extends StatelessWidget {
   PrayerScreen({super.key});
@@ -53,7 +55,7 @@ class PrayerScreen extends StatelessWidget {
                                 const PrayerHeader(),
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
-                                        0.1),
+                                        0.08),
                                 const Text(
                                   'باقي على الاذان',
                                   style: TextStyle(
@@ -155,10 +157,6 @@ class PrayerDateSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
         Column(
           children: [
             Text(
@@ -177,29 +175,30 @@ class PrayerDateSection extends StatelessWidget {
             ),
           ],
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_forward_ios),
-        ),
       ],
     );
   }
 }
 
 /// **Prayer Timings List**
-class PrayerTimingList extends StatelessWidget {
+class PrayerTimingList extends StatefulWidget {
   final PrayerTimeModel times;
   const PrayerTimingList({super.key, required this.times});
 
   @override
+  State<PrayerTimingList> createState() => _PrayerTimingListState();
+}
+
+class _PrayerTimingListState extends State<PrayerTimingList> {
+  @override
   Widget build(BuildContext context) {
     final prayerTimes = {
-      'الفجر': times.data.timings.fajr,
-      'الشروق': times.data.timings.sunrise,
-      'الظهر': times.data.timings.dhuhr,
-      'العصر': times.data.timings.asr,
-      'المغرب': times.data.timings.maghrib,
-      'العشاء': times.data.timings.isha,
+      'الفجر': widget.times.data.timings.fajr,
+      'الشروق': widget.times.data.timings.sunrise,
+      'الظهر': widget.times.data.timings.dhuhr,
+      'العصر': widget.times.data.timings.asr,
+      'المغرب': widget.times.data.timings.maghrib,
+      'العشاء': widget.times.data.timings.isha,
     };
 
     return Expanded(
@@ -211,9 +210,34 @@ class PrayerTimingList extends StatelessWidget {
           itemBuilder: (context, index) {
             final title = prayerTimes.keys.elementAt(index);
             final time = prayerTimes.values.elementAt(index);
+            var box = Hive.box('appBox');
+            bool isNotificationEnabled = box.get(title) ?? false;
             return PrayerTimeRow(
               title: title,
               time: time,
+              isNotificationEnabled: isNotificationEnabled,
+              onNotificationPressed: () {
+                setState(() {
+                  if (isNotificationEnabled) {
+                    LocalNotificationServices.cancelNotification(index);
+                  } else {
+                    LocalNotificationServices.scheduleDailyNotification(
+                            index,
+                            title,
+                            'Your prayer time is near',
+                            int.parse(time.split(':')[0]),
+                            int.parse(time.split(':')[1]))
+                        .then((value) {
+                      print('Notification Scheduled + $title,');
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('تم تفعيل الاشعار لصلاة $title'),
+                      ));
+                    });
+                  }
+                  isNotificationEnabled = !isNotificationEnabled;
+                  box.put(title, isNotificationEnabled);
+                });
+              },
             );
           },
         ),
@@ -226,10 +250,14 @@ class PrayerTimingList extends StatelessWidget {
 class PrayerTimeRow extends StatelessWidget {
   final String title;
   final String time;
+  final bool isNotificationEnabled;
+  final void Function()? onNotificationPressed;
   const PrayerTimeRow({
     super.key,
     required this.title,
     required this.time,
+    this.isNotificationEnabled = false,
+    this.onNotificationPressed,
   });
 
   @override
@@ -242,9 +270,15 @@ class PrayerTimeRow extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.notifications,
-                    color: Appconstrains.primaryColor, size: 30),
+                onPressed: onNotificationPressed,
+                icon: Icon(
+                    isNotificationEnabled
+                        ? Icons.notifications_active
+                        : Icons.notifications_off,
+                    color: isNotificationEnabled
+                        ? Appconstrains.primaryColor
+                        : Colors.grey,
+                    size: 30),
               ),
               Text(time,
                   style: Appconstrains.tajawal_bold.copyWith(fontSize: 20.0)),

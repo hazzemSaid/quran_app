@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:meta/meta.dart';
 import 'package:quran_app/features/parytime/data/api/parytimeAPI.dart';
@@ -16,6 +19,23 @@ class ParytimeCubit extends Cubit<ParytimeState> {
 
   Future<void> getParytime() async {
     emit(ParytimeLoading());
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    print(connectivityResult);
+    if (connectivityResult.contains(ConnectivityResult.none)) {
+      //using hive to get data from local storage
+      final box = Hive.box<PrayerTimeModel>('prayerTimes');
+      print('---> ${box.isNotEmpty}');
+      print("---------------------------------");
+      if (box.isNotEmpty) {
+        final praytimemodel = box.getAt(0);
+        emit(ParytimeLoaded(praytimemodel!));
+        return;
+      }
+      emit(ParytimeError(
+          'you are offline you must connect to internet in the first time '));
+      return;
+    }
+
     try {
       // Check if location services are enabled
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -55,14 +75,17 @@ class ParytimeCubit extends Cubit<ParytimeState> {
           longitude: longitude,
         );
         final praytimemodel = PrayerTimeModel.fromMap(parytime.data);
+        final box = Hive.box<PrayerTimeModel>('prayerTimes');
+        box.add(praytimemodel);
         emit(ParytimeLoaded(praytimemodel));
         return;
       } catch (e) {
-        emit(ParytimeError(e.toString()));
+        emit(ParytimeError('you are offline'));
         return;
       }
-    } catch (e) {
-      emit(ParytimeError(e.toString()));
+    } on DioException catch (e) {
+      emit(ParytimeError(e.message ?? 'An error occurred'));
+      return;
     }
   }
 }

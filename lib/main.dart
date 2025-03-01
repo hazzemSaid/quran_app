@@ -6,6 +6,7 @@ import 'package:quran_app/core/bloc/bloc.dart';
 import 'package:quran_app/core/util/services/local_notification_services/local_notification_services.dart';
 import 'package:quran_app/core/util/services/setupServiceLocator.dart'
     show setupServiceLocator;
+import 'package:quran_app/features/parytime/data/model/praytimemodel.dart';
 import 'package:quran_library/quran_library.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
@@ -20,7 +21,9 @@ void main() async {
   setupServiceLocator();
   final appDocumentDirectory =
       await path_provider.getApplicationDocumentsDirectory();
+
   Hive.init(appDocumentDirectory.path);
+  await Hive.openBox<PrayerTimeModel>('prayerTimes'); // Open the box
   await Hive.openBox('appBox');
   runApp(const MyApp());
 }

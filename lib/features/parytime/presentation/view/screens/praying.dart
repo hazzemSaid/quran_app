@@ -21,7 +21,27 @@ class PrayerScreen extends StatelessWidget {
       body: BlocBuilder<ParytimeCubit, ParytimeState>(
         builder: (context, state) {
           if (state is ParytimeError) {
-            return Center(child: Text(state.message));
+            return Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      state.message,
+                      style: Appconstrains.tajawal_medium.copyWith(
+                        color: Appconstrains.primaryColor,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    child: IconButton(
+                        onPressed: () {
+                          context.read<ParytimeCubit>().getParytime();
+                        },
+                        icon: (const Icon(Icons.refresh)))),
+              ],
+            );
           }
           if (state is ParytimeLoaded) {
             return Column(

@@ -1,6 +1,16 @@
-class PrayerTimeModel {
+import 'package:hive/hive.dart';
+
+part 'praytimemodel.g.dart';
+
+@HiveType(typeId: 0) // Unique ID for the class
+class PrayerTimeModel extends HiveObject {
+  @HiveField(0)
   final int code;
+
+  @HiveField(1)
   final String status;
+
+  @HiveField(2)
   final Data data;
 
   PrayerTimeModel({

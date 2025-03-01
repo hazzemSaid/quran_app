@@ -17,6 +17,7 @@ class LocalNotificationServices {
 
     print(
         'Local Time Zone: ${tz.local.name}'); // Debugging: Print the local time zone
+    // Debugging: Print the local time zone
 
     // Initialize the notifications plugin
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -40,6 +41,8 @@ class LocalNotificationServices {
 
   static Future<void> scheduleDailyNotification(
       int id, String title, String body, int hour, int minute) async {
+    //print time now and hour and minute with tz
+    print(tz.TZDateTime.now(tz.local));
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,

@@ -21,11 +21,6 @@ class _profile_snn_quranState extends State<profile_snn_quran> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    box.close();
-  }
-
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
